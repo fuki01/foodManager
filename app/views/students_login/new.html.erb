@@ -1,0 +1,9 @@
+<p>生徒用ログイン</p>
+<%= flash[:danger] %>
+<%= form_tag(students_login_path) do %>
+    <p>student_id</p>
+    <input name="student_id">
+    <p>student_pass</p>
+    <input name="student_pass">
+    <input type="submit" value="ログイン">
+<% end %>
