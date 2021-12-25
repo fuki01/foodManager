@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  before_action :authenticate, only: [:index, :new, :create]
   def index
     # トレーナが登録した学生の一覧を表示する
     user = current_user
