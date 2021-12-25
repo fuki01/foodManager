@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_25_113752) do
+ActiveRecord::Schema.define(version: 2021_12_25_155837) do
+
+  create_table "dailys", force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.integer "user_id_id", null: false
+    t.text "context"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_dailys_on_student_id"
+    t.index ["user_id_id"], name: "index_dailys_on_user_id_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -30,5 +40,7 @@ ActiveRecord::Schema.define(version: 2021_12_25_113752) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "dailys", "students"
+  add_foreign_key "dailys", "user_ids"
   add_foreign_key "students", "users"
 end

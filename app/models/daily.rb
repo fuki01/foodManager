@@ -1,0 +1,2 @@
+class daily < ApplicationRecord
+end
