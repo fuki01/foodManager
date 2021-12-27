@@ -2,11 +2,26 @@
     <a class="header item" href="/">FoodManager</a>
     <div class="right menu">
         <div class="ui item">
-          <% if current_user.nil? %>
-            <%= link_to "Login", new_user_session_path%>
-          <% else %>
+          <% puts "current_student", !current_student.nil?%>
+          <% puts "currnet_user", current_user.nil? %>
+          
+
+          <% if current_user.nil? and current_student.nil? %>
+            <% if current_user.nil?%>
+              <%= link_to "トレーナーログイン", new_user_session_path, style: "margin-right: 20px"%>
+            <% end %>
+            <% if current_student.nil? %>
+              <%= link_to "生徒ログイン", student_loginform_path%>
+            <% end %>
+          <% end %>
+
+          <% if !current_user.nil? %>
             <%= link_to "Logout", destroy_user_session_path, method: :delete%>
           <% end %>
+          <% if !current_student.nil? %>
+            <%= link_to "Logout", student_logout_path, method: :delete%>
+          <% end %>
+          
         </div>
     </div>
 </div>

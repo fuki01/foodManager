@@ -17,11 +17,41 @@ class StudentController < ApplicationController
     @student = Student.new(student_params)
     @student.user_id = current_user.id
     if @student.save
+      flash[:notice] = "You have successfully created a student"
       redirect_to @student
     else
-      flash[:notice] = "Error creating student"
+      flash[:alert] = "Error creating student"
       render 'new'
     end
+  end
+
+  def loginform
+    @student = Student.new
+  end
+
+  def login
+    student_username = Student.find_by(username: params[:username])
+    student_password = Student.find_by(password: params[:password])
+    # 例外処理
+    begin
+      if student_username.id == student_password.id
+        session[:student_id] = student_username.id
+        flash[:notice] = "You have successfully logged in"
+        redirect_to root_path
+      else
+        flash[:alert] = "Error logging in"
+        redirect_to root_path
+      end
+    rescue
+      flash[:alert] = "Error logging in"
+      redirect_to root_path
+    end
+  end
+  
+  def logout
+    session[:student_id] = nil
+    flash[:notice] = "You have successfully logged out"
+    redirect_to student_loginform_path
   end
 
   private
