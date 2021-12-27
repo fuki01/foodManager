@@ -156,6 +156,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    semantic-ui-sass (2.4.4.0)
+      sassc
     semantic_range (3.0.0)
     spring (4.0.0)
     sprockets (4.0.2)
@@ -204,6 +206,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.4)
   sass-rails (>= 6)
+  semantic-ui-sass
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
