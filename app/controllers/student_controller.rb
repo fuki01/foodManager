@@ -1,6 +1,8 @@
 class StudentController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :new, :create]
+
   def index
-    @students = Student.all
+    @students = Student.where(user_id: current_user.id)
   end
 
   def show
@@ -13,15 +15,17 @@ class StudentController < ApplicationController
 
   def create
     @student = Student.new(student_params)
+    @student.user_id = current_user.id
     if @student.save
       redirect_to @student
     else
+      flash[:notice] = "Error creating student"
       render 'new'
     end
   end
 
   private
     def student_params
-      params.require(:student).permit(:username, :password)
+      params.permit(:username, :password)
     end
 end
