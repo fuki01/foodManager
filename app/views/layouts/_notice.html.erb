@@ -1,0 +1,7 @@
+<% flash.each do |key, value| %>
+  <% if key == "alert" %>
+    <div class="ui message red"><%= value %></div>
+  <% elsif key == "notice" %>
+    <div class="ui message green"><%= value %></div>
+  <% end %>
+<% end %>
