@@ -1,0 +1,8 @@
+<div class="ui only row">
+  <%= link_to "一覧ページへ戻る", dailies_path %>
+</div>
+<div class="ui only row">
+<img src="<%= "/dailies/#{@daily.image}" %>" width="800px" style="width: 100%">
+</div>
+<%= @daily.context %><br>
+<%= @daily.day %>

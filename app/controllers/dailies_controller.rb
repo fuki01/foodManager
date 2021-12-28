@@ -5,13 +5,18 @@ class DailiesController < ApplicationController
     dailies = Daily.where(student_id: current_student.id)
     # 同じ日数のデータをまとめる
     @dailies_group = dailies.group_by(&:day)
+    # @dailies_groupをkeysでソートする
+    @dailies_group = @dailies_group.sort.reverse.to_h
+    puts @dailies_group
     # keyのみを取り出す
     @days = @dailies_group.keys
 
     first_bool = true
     tmp_day = ''
     @day_diffs = []
+    
     @days.each do |day|
+      puts day
       if first_bool
         tmp_day = Date.parse(day)
         @day_diffs << 0
@@ -20,11 +25,13 @@ class DailiesController < ApplicationController
         # 文字列を日付に変換
         day = Date.parse(day)
         @day_diffs << ((day - tmp_day).to_i).abs
-        # @day_diffs << day - tmp_day
         tmp_day = day
       end
     end
-    puts @day_diffs
+  end
+
+  def show
+    @daily = Daily.find(params[:id])
   end
 
   def new

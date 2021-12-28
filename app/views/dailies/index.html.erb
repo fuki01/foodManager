@@ -25,7 +25,7 @@
       <% @day = dg[1][i] %>
       <% if @day.present? %>
         <div class="four wide column">
-        <a href="##">
+        <a href="<%= "/dailies/#{@day.id}" %>" >
           <img src="<%= "/dailies/#{@day.image}" %>" height=300px width=513px>
         </a>
         </div>
