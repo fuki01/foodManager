@@ -3,6 +3,7 @@ class DailiesController < ApplicationController
   before_action :authenticate_student?, only: [:new, :create]
   before_action :authenticate_student_or_user?, only: [:index, :show]
   before_action :accsess_denied_student, only: [:index]
+  before_action :accsess_denied_user, only: [:index]
 
   def index
     dailies = Daily.where(student_id: params[:student_id])
