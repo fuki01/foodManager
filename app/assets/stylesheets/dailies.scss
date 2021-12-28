@@ -1,0 +1,21 @@
+// Place all the styles related to the dailies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.images_list {
+  height: 300px;
+
+  // 上下中央
+  display: flex;
+
+
+  button{
+    align-items: right;
+  }
+}
+
+.ui.grid > * {
+  padding-left: 0;
+  padding-right: 0;
+}

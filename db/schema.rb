@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_27_141249) do
+ActiveRecord::Schema.define(version: 2021_12_27_141250) do
+
+  create_table "dailies", force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.string "day"
+    t.string "context"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_dailies_on_student_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "username", null: false

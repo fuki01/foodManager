@@ -1,0 +1,40 @@
+<%= javascript_pack_tag 'dailies/index' %>
+<%= stylesheet_link_tag "dailies", :media => "all" %>
+<div class="ui grid">
+
+<h2 class="ui form only row">一覧表示する</h2>
+<% l=0 %>
+<% @dailies_group.each do |dg| %>
+  <% if @day_diffs[l] > 0 %>
+    <% for i in 1...@day_diffs[l]%>
+      <div class="ui form only row">
+        <%= Date.parse(dg[0]) + (@day_diffs[l]-i) %>
+      </div>
+      <div class="images_list">
+      </div>
+      <div class="ui form only row">
+        <%= link_to "+", new_daily_path(Date.parse(dg[0]) + (@day_diffs[l]-i)), class: "ui button blue" %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= dg[0] %>
+
+  <div class="images_list ">
+    <% l+=1 %>
+    <% for i in 0..dg[1].length %>
+      <% @day = dg[1][i] %>
+      <% if @day.present? %>
+        <div class="four wide column">
+        <a href="##">
+          <img src="<%= "/dailies/#{@day.image}" %>" height=300px width=513px>
+        </a>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="ui form only row">
+    <%= link_to "+", new_daily_path(dg[0]), class: "ui button blue" %>
+  </div>
+
+<% end %>
+</div>
