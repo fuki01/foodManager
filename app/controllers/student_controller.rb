@@ -3,6 +3,7 @@ class StudentController < ApplicationController
 
   def index
     @students = Student.where(user_id: current_user.id)
+    session[:student_id] = nil
   end
 
   def show
@@ -25,6 +26,11 @@ class StudentController < ApplicationController
     end
   end
 
+  def student_session_add
+    session[:student_id] = params[:student_id]
+    redirect_to dailies_path
+  end
+
   def loginform
     @student = Student.new
   end
@@ -37,7 +43,7 @@ class StudentController < ApplicationController
       if student_username.id == student_password.id
         session[:student_id] = student_username.id
         flash[:notice] = "You have successfully logged in"
-        redirect_to root_path
+        redirect_to dailies_index_path(current_student.id)
       else
         flash[:alert] = "Error logging in"
         redirect_to root_path

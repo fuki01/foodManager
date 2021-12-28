@@ -1,13 +1,15 @@
 class DailiesController < ApplicationController
   require 'securerandom'
+  before_action :authenticate_student?, only: [:new, :create]
+  before_action :authenticate_student_or_user?, only: [:index, :show]
+  before_action :accsess_denied_student, only: [:index]
 
   def index
-    dailies = Daily.where(student_id: current_student.id)
+    dailies = Daily.where(student_id: params[:student_id])
     # 同じ日数のデータをまとめる
     @dailies_group = dailies.group_by(&:day)
     # @dailies_groupをkeysでソートする
     @dailies_group = @dailies_group.sort.reverse.to_h
-    puts @dailies_group
     # keyのみを取り出す
     @days = @dailies_group.keys
 
@@ -16,7 +18,6 @@ class DailiesController < ApplicationController
     @day_diffs = []
     
     @days.each do |day|
-      puts day
       if first_bool
         tmp_day = Date.parse(day)
         @day_diffs << 0
@@ -59,7 +60,6 @@ class DailiesController < ApplicationController
       day = Time.zone.now.strftime("%Y-%m-%d")
       @daily.day = day
     end
-    # @daily.day = '2021-12-17'
 
     if @daily.save
       flash[:notice] = "You have successfully created a daily"

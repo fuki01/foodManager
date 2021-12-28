@@ -1,4 +1,4 @@
-<%= javascript_pack_tag 'dailies/index' %>
+<%= javascript_pack_tag 'dailies/index', 'data-turbolinks-track': 'reload' %>
 <%= stylesheet_link_tag "dailies", :media => "all" %>
 <div class="ui grid">
 
@@ -12,9 +12,11 @@
       </div>
       <div class="images_list">
       </div>
+      <% if !current_user.nil? %>
       <div class="ui form only row">
         <%= link_to "+", new_daily_path(Date.parse(dg[0]) + (@day_diffs[l]-i)), class: "ui button blue" %>
       </div>
+      <% end %>
     <% end %>
   <% end %>
   <%= dg[0] %>
