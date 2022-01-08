@@ -1,6 +1,16 @@
-<div class="ui only row">
-  <%= link_to "一覧ページへ戻る", dailies_path %>
+<div class="ui grid">
+  <div class="ui only row">
+    <%= link_to "一覧ページへ戻る", dailies_path %>
+  </div>
+  <img src="<%= "/dailies/#{@daily.image}" %>" width="800px" style="width: 100%" class="ui small image">
+  <div class="ui only row">
+  <%= @daily.day %>
+  </div>
+  <div class="ui center only row">
+  <h4>言い訳:</h4>
+  <%= @daily.context %>
+  </div>
+  <div class="ui only row">
+    <%= render partial: 'comment' %>
+  </div>
 </div>
-<img src="<%= "/dailies/#{@daily.image}" %>" width="800px" style="width: 100%" class="ui small image">
-<%= @daily.context %><br>
-<%= @daily.day %>

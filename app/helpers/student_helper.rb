@@ -25,7 +25,6 @@ module StudentHelper
   end
 
   def accsess_denied_user
-    @denied = false
     if return_current_account_postion == "user"
       begin
         current_user.student.each do |student|
@@ -36,11 +35,11 @@ module StudentHelper
       rescue
         @denied = false
       end
-    end
-
-    if @denied == false
-      flash[:alert] = "You can't access this page"
-      redirect_to user_home_path
+      
+      if @denied == false
+        flash[:alert] = "You can't access this page"
+        redirect_to user_home_path
+      end
     end
   end
 end

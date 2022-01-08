@@ -64,7 +64,7 @@ class DailiesController < ApplicationController
 
     if @daily.save
       flash[:notice] = "You have successfully created a daily"
-      redirect_to dailies_path
+      redirect_to "/dailies/#{current_student.id}/index"
     else
       flash[:alert] = "Error creating daily"
       render 'new'
