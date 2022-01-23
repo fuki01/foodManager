@@ -3,6 +3,8 @@
     <%= link_to "一覧ページへ戻る", dailies_path %>
   </div>
   <img src="<%= "/dailies/#{@daily.image}" %>" width="800px" style="width: 100%" class="ui small image">
+  <%# 画像へスタンプをつける %>
+  <a href="<%= "/dailies/#{params[:id]}/stamp" %>" >スタンプをつける</a>
   <div class="ui only row">
   <%= @daily.day %>
   </div>
@@ -10,7 +12,34 @@
   <h4>言い訳:</h4>
   <%= @daily.context %>
   </div>
-  <div class="ui only row">
-    <%= render partial: 'comment' %>
-  </div>
+    <div class="ui only row">
+      <div class="ui comments" style="margin: 0 auto; width: 500px;">
+        <h3 class="ui dividing header">コメント</h3>
+        <% @comments.each do |comment| %>
+          <div class="comment">
+          <% if comment.position == 'student' %>
+            <a class="avatar">
+              <i class="meh user icon" style="font-size:2.5em;" ></i>
+            </a>
+          <% elsif comment.position == 'trainer' %>
+            <a class="avatar">
+              <i class="smile user icon" style="font-size:2.5em; color: red;" ></i>
+            </a>
+          <% end %>
+            <div class="content">
+              <a class="author"><%= comment.position %></a>
+              <div class="metadata">
+                <span class="date"><%= comment.created_at %></span>
+              </div>
+              <div class="text">
+                <%= comment.content %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <% if !current_user.nil? %>
+          <%= render 'comment_form' %>
+        <% end %>
+      </div>
+    </div>
 </div>

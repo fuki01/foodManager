@@ -34,6 +34,7 @@ class DailiesController < ApplicationController
 
   def show
     @daily = Daily.find(params[:id])
+    @comments = @daily.comments.order(created_at: :desc)
   end
 
   def new
@@ -69,5 +70,9 @@ class DailiesController < ApplicationController
       flash[:alert] = "Error creating daily"
       render 'new'
     end
+  end
+
+  def stamp
+    @daily = Daily.find(params[:id])
   end
 end

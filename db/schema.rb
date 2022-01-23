@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_27_141250) do
+ActiveRecord::Schema.define(version: 2022_01_08_012851) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.string "position"
+    t.integer "daily_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["daily_id"], name: "index_comments_on_daily_id"
+  end
 
   create_table "dailies", force: :cascade do |t|
     t.integer "student_id", null: false
@@ -43,5 +52,6 @@ ActiveRecord::Schema.define(version: 2021_12_27_141250) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "dailies"
   add_foreign_key "students", "users"
 end
