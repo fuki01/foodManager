@@ -4,7 +4,9 @@
   </div>
   <img src="<%= "/dailies/#{@daily.image}" %>" width="800px" style="width: 100%" class="ui small image">
   <%# 画像へスタンプをつける %>
+  <% if !(current_user.nil?) %>
   <a href="<%= "/dailies/#{params[:id]}/stamp" %>" >スタンプをつける</a>
+  <% end %>
   <div class="ui only row">
   <%= @daily.day %>
   </div>
