@@ -2,7 +2,7 @@ containerWidth = 0
 imageCount = 0;
 imageWidth = 0;
 oneImageWidth = 0;
-// init
+
 
 function image_resize(){
   // containerの横幅を取得
@@ -33,4 +33,3 @@ function resizeWindow(){
 }
 
 window.addEventListener('resize', resizeWindow);
-window.onload = init;
