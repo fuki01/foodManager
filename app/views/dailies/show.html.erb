@@ -15,6 +15,9 @@
     <div class="ui only row">
       <div class="ui comments" style="margin: 0 auto; width: 500px;">
         <h3 class="ui dividing header">コメント</h3>
+        <% if @comments.empty? %>
+          <p>コメントはまだありません</p>
+        <% end %>
         <% @comments.each do |comment| %>
           <div class="comment">
           <% if comment.position == 'student' %>
