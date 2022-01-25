@@ -5,12 +5,11 @@
 
 <h2 class="ui form only row">一覧表示する</h2>
 <% @nowtime = Time.zone.now.strftime("%Y-%m-%d") %>
-<% if !@dailies_group.nil? %>
-  <div class="ui form only row">
-  <% if current_user.nil? %>
-    <p>投稿がまだありません.今日の登録してください．<a href="/dailies/new/<%= @nowtime %>"><i class="add sign icon" style="font-size:2em; "></i></a></p>
-  <% end %>
-  </div>
+<% @latesttime = @dailies_group.take(1).to_h.keys[0] %>
+<% if !(@nowtime == @latesttime) %>
+<div class="ui form only row">
+  <p>投稿がまだありません.今日の登録してください<a href="/dailies/new/<%= @nowtime %>"><i class="add sign icon" style="font-size:2em; "></i></a></p>
+</div>
 <% end %>
 <% l=0 %>
 <% @dailies_group.each do |dg| %>
@@ -18,6 +17,7 @@
     <% for i in 1...@day_diffs[l]%>
       <div class="ui form only row">
         <%= Date.parse(dg[0]) + (@day_diffs[l]-i) %>
+        <%= debug Date.parse(dg[0]) + (@day_diffs[l]-i) %>
       </div>
       <div class="images_list">
       </div>
