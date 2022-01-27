@@ -1,3 +1,10 @@
+<meta name="turbolinks-cache-control" content="no-preview">
+<%= javascript_pack_tag 'dailies/stamp', defer: true %>
+
+<div id="main-body">
+<div id="load_id">
+loading...
+</div>
 <canvas id="canvas"></canvas>
 <p>スタンプのプレビュー</p>
 <canvas id="stamp_viewr" width="500px" height="500px"></canvas>
@@ -18,10 +25,16 @@
 
 <%# @daily.imageを非表示labelにする %>
 <div id="image_path"><%= @daily.image %></div>
+</div>
+
+<%= image_tag @daily.image, id: "daily_image" %>
 
 <style>
   #stamp_viewr {
     border: 1px solid black;
   }
+  #daily_image {
+    /* 非表示 */
+    display: none;
+  }
 </style>
-<%= javascript_pack_tag 'dailies/stamp' %>

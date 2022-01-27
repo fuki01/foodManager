@@ -1,19 +1,48 @@
+document.addEventListener('turbolinks:load', function() {
+  console.log("It works on each visit!");
+  // load_funcが終わったら実行
+  setTimeout(load_func, 1000);
+});
 
-// 画像を読み込みます。
-// canvasに画像を貼り付ける
-var img = new Image();
-var image_path = document.getElementById("image_path").innerHTML;
-img.src = "/dailies/"+image_path;
-var canvas = document.getElementById('canvas');
-img.onload = function() {
-  var ctx = canvas.getContext('2d');
-  // canvasのサイズを画像のサイズに合わせます。
-  canvas.width = img.width;
-  canvas.height = img.height;
+function load_func(){
+  console.log("load_func");
+  const tmp = document.getElementById('daily_image');
+  // currentSrcを表示
+  console.log(tmp.currentSrc);
+
+  // #main-bodyの横幅を取得
+  
+  // 画像を読み込みます。
   // canvasに画像を貼り付ける
-  // 画像サイズをちいさくなるように拡大縮小
-  ctx.drawImage(img, (canvas.width - canvas.width/1.2)/2, (canvas.height - canvas.height/1.2)/2, canvas.width/1.2, canvas.height/1.2);
-};
+  var img = new Image();
+  img.src = tmp.currentSrc;
+  
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    
+    const main_body_width = document.getElementById('main-body').clientWidth;
+    
+    console.log("main_body_width: " + main_body_width);
+    const orgWidth  = img.width;  // 元の横幅を保存
+    const orgHeight = img.height; // 元の高さを保存
+    console.log("orgWidth: " + orgWidth);
+    console.log("orgHeight: " + orgHeight);
+    
+    img.width = main_body_width;  // 横幅を400pxにリサイズ
+    img.height = orgHeight * (img.width / orgWidth); // 高さを横幅の変化割合に合わせる
+    console.log(orgHeight+" "+ img.width + " " + orgWidth);
+    var ctx = canvas.getContext('2d');
+    // canvasのサイズを画像のサイズに合わせます。
+    canvas.width = img.width;
+    canvas.height = img.height;
+    // canvasに画像を貼り付ける
+    // 画像サイズをちいさくなるように拡大縮小
+    ctx.drawImage(img, (canvas.width - canvas.width/1.2)/2, (canvas.height - canvas.height/1.2)/2, canvas.width/1.2, canvas.height/1.2);
+    // load_idを削除
+    document.getElementById('load_id').remove();
+  };
+  
+}
 
 canvas.addEventListener("click", (e) => {
   const canvas_viewr = document.getElementById('canvas');
