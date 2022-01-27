@@ -18,16 +18,17 @@ group :development, :test do
 end
 
 group :development do
-  # n+1問題を検知するためのgem
+  # n+1問題を解決するためのgem
   gem 'bullet'
+  gem 'web-console', '>= 4.1.0'
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
-  gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
-  gem 'spring'
+  gem 'rubocop', require: false
   gem 'sqlite3', '~> 1.4'
-  gem 'web-console', '>= 4.1.0'
+  gem 'spring'
+
 end
 
 group :production do
