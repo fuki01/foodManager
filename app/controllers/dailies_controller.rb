@@ -66,7 +66,8 @@ class DailiesController < ApplicationController
   end
 
   private
-    def daily_params
-      params.permit(:context, :image)
-    end
+
+  def daily_params
+    params.permit(:context, :image)
+  end
 end
