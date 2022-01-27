@@ -20,6 +20,7 @@ canvas.addEventListener("click", (e) => {
   const size = document.getElementsByName('size')[0].value;
   const x = e.offsetX;
   const y = e.offsetY;
+  console.log(x, y);
   genuine_puts_stamp(canvas_viewr, size, x ,y);
 });
 
@@ -30,9 +31,7 @@ function genuine_puts_stamp(output_canvas, size, x ,y){
   const text = document.getElementsByName('textarea')[0].value;
   // サイズを書く
   // リセットする
-  ctx.font = "30px 'ＭＳ Ｐゴシック'";
-  ctx.fillStyle = "black";
-
+  
   
   // 画像を貼り付ける
   const stamp = new Image();
@@ -50,16 +49,22 @@ function genuine_puts_stamp(output_canvas, size, x ,y){
   const h = canvas_viewr.height*(size/100)
   
   const ctx_c = output_canvas.getContext('2d');
-
+  
   stamp.onload = function() {
-    ctx_c.drawImage(stamp, x, y, w, h);
+    // x,y,w,hの中心座標
+    // 長方形を描写
+    ctx_c.strokeRect(x-250, y-250, 500, 500);
+    // スタンプ位置を長方形の真ん中にする
+    ctx_c.drawImage(stamp, x-(w/2), y-(h/2), w, h);
   }
-
+  
   // カラーピッカーの値を描画
   ctx.fillStyle = document.getElementsByName('color')[0].value;
   // テキストを描画
   const text_width = ctx.measureText(text).width;
-  ctx_c.fillText(text, x+(w/2)-(text_width/2), y+h);
+  // テキストサイズを変更
+  ctx_c.font = "60px 'ＭＳ Ｐゴシック'";
+  ctx_c.fillText(text, x-(text_width/2), y+h/2);
 }
 
 
@@ -138,32 +143,4 @@ function puts_stamp(output_canvas, size){
   // テキストを描画
   const text_width = ctx.measureText(text).width;
   ctx_c.fillText(text, x+(w/2)-(text_width/2), y+h);
-}
-
-function stamp_viewr(num){
-  var canvas_viewr = document.getElementById('stamp_viewr');
-  var ctx = canvas_viewr.getContext('2d');
-  var img = new Image();
-  img.src = "/assets/stamp" + num + ".png";
-  img.onload = function() {
-    canvas_viewr.width = img.width;
-    canvas_viewr.height = img.height;
-    ctx.drawImage(img, 0, 0);
-  };
-}
-
-// 文字を描画する関数
-function drawText(text) {
-  canvas_viewr = document.getElementById('stamp_viewr');
-  ctx = canvas_viewr.getContext('2d');
-  ctx.font = "30px 'ＭＳ Ｐゴシック'";
-  ctx.fillStyle = "black";
-  // 白色の四角形を描画
-  ctx.fillStyle = "white";
-  ctx.fillRect(0, canvas_viewr.height-60, canvas_viewr.width, canvas_viewr.height);
-  
-  // カラーピッカーの値を描画
-  const color = document.getElementsByName('color')[0].value;
-  ctx.fillStyle = color;
-  ctx.fillText(text, 0, canvas_viewr.height-30);
 }

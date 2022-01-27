@@ -1,21 +1,14 @@
-
 <canvas id="canvas"></canvas>
 <p>スタンプのプレビュー</p>
 <canvas id="stamp_viewr" width="500px" height="500px"></canvas>
 
 <%# ラジオボタンを追加する %>
-<div>
-  <input type="radio" id="stamp1" name="stamp" value="1">
-  <label for="scales">まる</label>
-</div>
-<div>
-  <input type="radio" id="stamp2" name="stamp" value="2">
-  <label for="scales">三角</label>
-</div>
-<div>
-  <input type="radio" id="stamp3" name="stamp" value="3">
-  <label for="scales">ばつ</label>
-</div>
+<input type="radio" id="stamp1" name="stamp" value="1">
+<label for="scales">まる</label>
+<input type="radio" id="stamp2" name="stamp" value="2">
+<label for="scales">三角</label>
+<input type="radio" id="stamp3" name="stamp" value="3">
+<label for="scales">ばつ</label>
 <%# テキストエリア %>
 <textarea name="textarea" id="context" rows="4" cols="40"></textarea>
 <%# サイズ変更 %>
@@ -31,4 +24,4 @@
     border: 1px solid black;
   }
 </style>
-    <%= javascript_pack_tag 'dailies/stamp' %>
+<%= javascript_pack_tag 'dailies/stamp' %>
