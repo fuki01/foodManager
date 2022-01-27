@@ -43,19 +43,8 @@ class DailiesController < ApplicationController
   end
 
   def create
-    @daily = Daily.new(
-      context: params[:context]
-    )
-    # 画像の保存
-    if params[:image]
-      # Dailieの一番最後のimageを取得する
-      filename = SecureRandom.base64(8) + params[:image].original_filename
-      @daily.image = filename
-      File.binwrite("public/dailies/#{filename}", params[:image].read)
-    end
-
+    @daily = Daily.new(daily_params)
     @daily.student_id = current_student.id
-
     if params[:date].present?
       @daily.day = params[:date]
     else
@@ -74,5 +63,11 @@ class DailiesController < ApplicationController
 
   def stamp
     @daily = Daily.find(params[:id])
+  end
+
+  private
+
+  def daily_params
+    params.permit(:context, :image)
   end
 end
