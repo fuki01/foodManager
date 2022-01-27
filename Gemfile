@@ -8,10 +8,10 @@ gem 'devise'
 gem 'jbuilder', '~> 2.7'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.4'
-gem 'sass-rails', '>= 6'
-gem 'semantic-ui-sass'
 gem 'turbolinks', '~> 5'
+gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
+gem 'semantic-ui-sass'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -22,12 +22,12 @@ group :development do
   gem 'bullet'
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
-  gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'spring'
-  gem 'sqlite3', '~> 1.4'
   gem 'web-console', '>= 4.1.0'
+  gem 'sqlite3', '~> 1.4'
+  gem 'rubocop', require: false
 end
 
 group :production do
