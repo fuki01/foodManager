@@ -1,8 +1,10 @@
+<%= javascript_pack_tag 'dailies/show', defer: true %>
+
 <div class="ui grid">
   <div class="ui only row">
     <%= link_to "一覧ページへ戻る", dailies_path %>
   </div>
-  <%= image_tag @daily.image %>
+  <%= image_tag @daily.image, id: "show_img" %>
   <%# 画像へスタンプをつける %>
   <% if !(current_user.nil?) %>
   <a href="<%= "/dailies/#{params[:id]}/stamp" %>" >スタンプをつける</a>
@@ -14,7 +16,7 @@
   <h4>言い訳:</h4>
   <%= @daily.context %>
   </div>
-    <div class="ui only row">
+    <div class="ui only row" id="body-main">
       <div class="ui comments" style="margin: 0 auto; width: 500px;">
         <h3 class="ui dividing header">コメント</h3>
         <% if @comments.empty? %>

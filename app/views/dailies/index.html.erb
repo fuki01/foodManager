@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "dailies", :media => "all" %>
+<%= stylesheet_link_tag "dailies"%>
 <%= javascript_pack_tag 'dailies/index', defer: true %>
 
 <div class="ui grid">
@@ -38,7 +38,7 @@
       <% if @day.present? %>
         <div class="four wide column">
         <a href="<%= "/dailies/#{@day.id}" %>" >
-          <%= image_tag @day.image %>
+          <%= image_tag @day.image, class: "index_img" %>
         </a>
         </div>
       <% end %>
