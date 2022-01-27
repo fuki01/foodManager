@@ -2,7 +2,7 @@
   <div class="ui only row">
     <%= link_to "一覧ページへ戻る", dailies_path %>
   </div>
-  <img src="<%= "/dailies/#{@daily.image}" %>" width="800px" style="width: 100%" class="ui small image">
+  <%= image_tag @daily.image %>
   <%# 画像へスタンプをつける %>
   <% if !(current_user.nil?) %>
   <a href="<%= "/dailies/#{params[:id]}/stamp" %>" >スタンプをつける</a>

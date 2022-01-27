@@ -38,7 +38,7 @@
       <% if @day.present? %>
         <div class="four wide column">
         <a href="<%= "/dailies/#{@day.id}" %>" >
-          <img src="<%= "/dailies/#{@day.image}" %>" height=300px width=513px>
+          <%= image_tag @day.image %>
         </a>
         </div>
       <% end %>
