@@ -1,7 +1,7 @@
 class DailiesController < ApplicationController
   require 'securerandom'
-  before_action :authenticate_student?, only: [:new, :create]
-  before_action :authenticate_student_or_user?, only: [:index, :show]
+  before_action :authenticate_student?, only: %i[new create]
+  before_action :authenticate_student_or_user?, only: %i[index show]
   before_action :accsess_denied_student, only: [:index]
   before_action :accsess_denied_user, only: [:index]
 
@@ -17,7 +17,7 @@ class DailiesController < ApplicationController
     first_bool = true
     tmp_day = ''
     @day_diffs = []
-    
+
     @days.each do |day|
       if first_bool
         tmp_day = Date.parse(day)
@@ -26,7 +26,7 @@ class DailiesController < ApplicationController
       else
         # 文字列を日付に変換
         day = Date.parse(day)
-        @day_diffs << ((day - tmp_day).to_i).abs
+        @day_diffs << (day - tmp_day).to_i.abs
         tmp_day = day
       end
     end
@@ -59,15 +59,15 @@ class DailiesController < ApplicationController
     if params[:date].present?
       @daily.day = params[:date]
     else
-      day = Time.zone.now.strftime("%Y-%m-%d")
+      day = Time.zone.now.strftime('%Y-%m-%d')
       @daily.day = day
     end
 
     if @daily.save
-      flash[:notice] = "You have successfully created a daily"
+      flash[:notice] = 'You have successfully created a daily'
       redirect_to "/dailies/#{current_student.id}/index"
     else
-      flash[:alert] = "Error creating daily"
+      flash[:alert] = 'Error creating daily'
       render 'new'
     end
   end

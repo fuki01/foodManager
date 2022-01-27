@@ -1,24 +1,24 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     user_home_path
   end
 
   def authenticate_student_or_user?
     unless current_student || current_user
-      flash[:alert] = "You must be logged in to access this section"
+      flash[:alert] = 'You must be logged in to access this section'
       redirect_to root_path
     end
   end
-  
+
   # どのユーザーがログインしているかを返却する
   def return_current_account_postion
     if current_student.present?
-      return "student"
+      'student'
     elsif current_user.present?
-      return "user"
+      'user'
     else
-      return "none"
+      'none'
     end
   end
   include StudentHelper

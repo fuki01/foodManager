@@ -16,45 +16,91 @@ img.onload = function() {
 };
 
 canvas.addEventListener("click", (e) => {
-  let rect = e.target.getBoundingClientRect();
-  let ctx = canvas.getContext('2d');
-  // e.clientX(Y)がwindow左上からのクリックされた座標
-  // rect.left(top)がwindow左上からのcanvasの座標
-  x = e.clientX - rect.left;
-  y = e.clientY - rect.top;
+  const canvas_viewr = document.getElementById('canvas');
+  const size = document.getElementsByName('size')[0].value;
+  const x = e.offsetX;
+  const y = e.offsetY;
+  genuine_puts_stamp(canvas_viewr, size, x ,y);
+});
+
+
+function genuine_puts_stamp(output_canvas, size, x ,y){
+  const canvas_viewr = document.getElementById('stamp_viewr');
+  const ctx = canvas_viewr.getContext('2d');
+  const text = document.getElementsByName('textarea')[0].value;
+  // サイズを書く
+  // リセットする
+  ctx.font = "30px 'ＭＳ Ｐゴシック'";
+  ctx.fillStyle = "black";
+
+  
+  // 画像を貼り付ける
   const stamp = new Image();
   // チェックボックスがチェックされているかどうか
   if (document.getElementById('stamp1').checked) {
     stamp.src = "/assets/stamp1.png";
-  } else if (document.getElementById('stamp2').checked) {
+  }
+  if (document.getElementById('stamp2').checked) {
     stamp.src = "/assets/stamp2.png";
-  } else if (document.getElementById('stamp3').checked) {
+  }
+  if (document.getElementById('stamp3').checked) {
     stamp.src = "/assets/stamp3.png";
   }
+  const w = canvas_viewr.width*(size/100)
+  const h = canvas_viewr.height*(size/100)
+  
+  const ctx_c = output_canvas.getContext('2d');
+
   stamp.onload = function() {
-    ctx.drawImage(stamp, x-stamp.width/2, y-stamp.height/2, stamp.width, stamp.height);
-  };
+    ctx_c.drawImage(stamp, x, y, w, h);
+  }
 
-  // テキストエリアの値を取得
-  const text = document.getElementsByName('textarea')[0].value;
-  // テキストを描画
-  ctx.fillStyle = "black";
-  // カラーピッカーを取得する
-  const color = document.getElementsByName('color')[0].value;
-  // スタンプサイズを取得する
   // カラーピッカーの値を描画
-  ctx.fillStyle = color;
+  ctx.fillStyle = document.getElementsByName('color')[0].value;
   // テキストを描画
-  ctx.font = "30px 'ＭＳ Ｐゴシック'";
-  ctx.fillText(text, x-230, y+200);
-});
+  const text_width = ctx.measureText(text).width;
+  ctx_c.fillText(text, x+(w/2)-(text_width/2), y+h);
+}
 
+
+// サイズを変化させるときの処理
 const size = document.getElementsByName('size')[0];
 size.addEventListener('change', (e) => {
-  puts_stamp(e.target.value);
+  const canvas_viewr = document.getElementById('stamp_viewr');
+  puts_stamp(canvas_viewr, e.target.value);
 });
 
-function puts_stamp(size){
+// ラジオボックスのチェックしたときの処理
+const radio = document.getElementsByName('stamp');
+for (let i = 0; i < radio.length; i++) {
+  radio[i].addEventListener('change', (e) => {
+    // stamp_sizeを取得
+    const size = document.getElementsByName('size')[0].value;
+    const canvas_viewr = document.getElementById('stamp_viewr');
+    puts_stamp(canvas_viewr,size);
+  });
+}
+
+// textareaに変化があったときの処理
+const textarea = document.getElementsByName('textarea')[0];
+textarea.addEventListener('change', (e) => {
+  // stamp_sizeを取得
+  const size = document.getElementsByName('size')[0].value;
+  const canvas_viewr = document.getElementById('stamp_viewr');
+  puts_stamp(canvas_viewr,size);
+});
+
+// カラーピッカーに変更があったときの処理
+const color = document.getElementsByName('color')[0];
+color.addEventListener('change', (e) => {
+  // stamp_sizeを取得
+  const size = document.getElementsByName('size')[0].value;
+  const canvas_viewr = document.getElementById('stamp_viewr');
+  puts_stamp(canvas_viewr,size);
+});
+
+
+function puts_stamp(output_canvas, size){
   const canvas_viewr = document.getElementById('stamp_viewr');
   const ctx = canvas_viewr.getContext('2d');
   const text = document.getElementsByName('textarea')[0].value;
@@ -81,15 +127,17 @@ function puts_stamp(size){
   const y = canvas_viewr.height/2-(canvas_viewr.height*(size/100))/2
   const w = canvas_viewr.width*(size/100)
   const h = canvas_viewr.height*(size/100)
+  const ctx_c = output_canvas.getContext('2d');
+
   stamp.onload = function() {
-    ctx.drawImage(stamp, x, y, w, h);
+    ctx_c.drawImage(stamp, x, y, w, h);
   }
 
   // カラーピッカーの値を描画
   ctx.fillStyle = document.getElementsByName('color')[0].value;
   // テキストを描画
   const text_width = ctx.measureText(text).width;
-  ctx.fillText(text, x+(w/2)-(text_width/2), y+h);
+  ctx_c.fillText(text, x+(w/2)-(text_width/2), y+h);
 }
 
 function stamp_viewr(num){
@@ -103,26 +151,6 @@ function stamp_viewr(num){
     ctx.drawImage(img, 0, 0);
   };
 }
-
-
-window.addEventListener( "DOMContentLoaded" , ()=> {
-  document.getElementsByName("scales").forEach(
-    r => r.addEventListener("change" ,
-      e => stamp_viewr(e.target.value)
-    )
-  );
-});
-
-window.addEventListener('DOMContentLoaded', function(){
-  // input要素を取得
-  var input_name = document.getElementById("context");
-
-  // イベントリスナーでイベント「change」を登録
-  input_name.addEventListener("change",function(){
-    console.log(this.value);
-    drawText(this.value);
-  });
-});
 
 // 文字を描画する関数
 function drawText(text) {

@@ -1,5 +1,5 @@
 class StudentController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :create]
+  before_action :authenticate_user!, only: %i[index new create]
 
   def index
     @students = Student.where(user_id: current_user.id)
@@ -18,10 +18,10 @@ class StudentController < ApplicationController
     @student = Student.new(student_params)
     @student.user_id = current_user.id
     if @student.save
-      flash[:notice] = "You have successfully created a student"
+      flash[:notice] = 'You have successfully created a student'
       redirect_to @student
     else
-      flash[:alert] = "Error creating student"
+      flash[:alert] = 'Error creating student'
       render 'new'
     end
   end
@@ -42,26 +42,27 @@ class StudentController < ApplicationController
     begin
       if student_username.id == student_password.id
         session[:student_id] = student_username.id
-        flash[:notice] = "You have successfully logged in"
+        flash[:notice] = 'You have successfully logged in'
         redirect_to dailies_index_path(current_student.id)
       else
-        flash[:alert] = "Error logging in"
+        flash[:alert] = 'Error logging in'
         redirect_to root_path
       end
-    rescue
-      flash[:alert] = "Error logging in"
+    rescue StandardError
+      flash[:alert] = 'Error logging in'
       redirect_to root_path
     end
   end
-  
+
   def logout
     session[:student_id] = nil
-    flash[:notice] = "You have successfully logged out"
+    flash[:notice] = 'You have successfully logged out'
     redirect_to student_loginform_path
   end
 
   private
-    def student_params
-      params.permit(:username, :password)
-    end
+
+  def student_params
+    params.permit(:username, :password)
+  end
 end
