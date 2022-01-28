@@ -40,5 +40,5 @@ group :production do
   gem 'pg', '1.1'
 
 end
-gem 'google-cloud-storage', '~> 1.29', '>= 1.29.2'
+
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
