@@ -6,8 +6,18 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-cloudinary:
-  service: Cloudinary
-  cloud_name: <%= Rails.application.credentials.dig(:cloudinary, :cloud_name) %>
-  api_key: <%= Rails.application.credentials.dig(:cloudinary, :api_key) %>
-  api_secret: <%= Rails.application.credentials.dig(:cloudinary, :api_secret) %>
+google:
+  service: GCS
+  credentials:
+    type: "service_account"
+    project_id: "shool-issue"
+    private_key_id: <%= Rails.application.credentials.dig(:gcs, :private_key_id) %>
+    private_key: <%= Rails.application.credentials.dig(:gcs, :private_key).dump %>
+    client_email: "shool-issue-app@shool-issue.iam.gserviceaccount.com"
+    client_id: "102815955857204429095"
+    auth_uri: "https://accounts.google.com/o/oauth2/auth"
+    token_uri: "https://oauth2.googleapis.com/token"
+    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
+    client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/shool-issue-app%40shool-issue.iam.gserviceaccount.com"
+  project: ""
+  bucket: ""
