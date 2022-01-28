@@ -1,24 +1,33 @@
-# README
+# FoodManager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+トレーナと生徒を繋ぐ食事管理アプリです．
 
-Things you may want to cover:
+# Requirement
 
-* Ruby version
+Gemfileを見てください．
 
-* System dependencies
 
-* Configuration
+# Usage
 
-* Database creation
+Requirementで列挙したライブラリなどのインストール方法を説明する
 
-* Database initialization
+```bash
+git clone https://github.com/fuki01/foodManager.git
+cd foodManager
+bundle install --path vendor/bundle
+bundle exec rails db:create
+bundle exec rails db:migrate
+bundle exec rails s
+```
+# Note
 
-* How to run the test suite
+画像保存先をローカルではなく，クラウドにアップロードする計画があるため，setup方法が変わる可能性があります．
 
-* Services (job queues, cache servers, search engines, etc.)
+# Author
 
-* Deployment instructions
+* fuki mori
+* fuu05160@gmail.com
 
-* ...
+# License
+
+"foodManager" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
