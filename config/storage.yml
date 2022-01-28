@@ -10,7 +10,7 @@ google:
   service: GCS
   credentials:
     type: "service_account"
-    project_id: "shool-issue"
+    project_id: <%= Rails.application.credentials.dig(:gcs, :project_id) %>
     private_key_id: <%= Rails.application.credentials.dig(:gcs, :private_key_id) %>
     private_key: <%= Rails.application.credentials.dig(:gcs, :private_key).dump %>
     client_email: "shool-issue-app@shool-issue.iam.gserviceaccount.com"
