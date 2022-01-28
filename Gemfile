@@ -17,6 +17,8 @@ gem 'webpacker', '~> 5.0'
 gem 'activestorage-cloudinary-service'
 gem 'cloudinary', require: false
 gem "mini_magick"
+gem "google-cloud-storage", "~> 1.11", require: false
+
 
 
 group :development, :test do
