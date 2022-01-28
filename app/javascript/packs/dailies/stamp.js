@@ -1,7 +1,7 @@
 document.addEventListener('turbolinks:load', function() {
   console.log("It works on each visit!");
   // load_funcが終わったら実行
-  setTimeout(load_func, 1000);
+  setTimeout(load_func, 500);
 });
 
 function load_func(){
@@ -172,4 +172,54 @@ function puts_stamp(output_canvas, size){
   // テキストを描画
   const text_width = ctx.measureText(text).width;
   ctx_c.fillText(text, x+(w/2)-(text_width/2), y+h);
+}
+
+
+// class save_linkが押された時に処理
+document.getElementsByClassName('save_link')[0].addEventListener('click', (e) => {
+  // canvasをpngに変換
+  const canvas = document.getElementById('canvas');
+  const dataURL = canvas.toDataURL('image/png');
+  // Base64形式をデコードする
+  const base64 = dataURL.replace(/^data:image\/png;base64,/, "");
+
+  // ファイルを作成
+  const blob = toBlob(base64);
+
+  // blobをpostで送る
+  const formData = new FormData();
+  formData.append('image', blob, 'stamp.png');
+  formData.append('daily_id', document.getElementById('daily_id').value);
+
+  // ajaxでpostする
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/dailies/canvas');
+  xhr.send(formData);
+
+  // ページを変える
+  // 5秒まつ
+  setTimeout(() => {
+  window.location.href = '/dailies/' + document.getElementById('daily_id').value;
+  }, 1000);
+
+
+
+
+});
+
+function toBlob(base64) {
+  var bin = atob(base64.replace(/^.*,/, ''));
+  var buffer = new Uint8Array(bin.length);
+  for (var i = 0; i < bin.length; i++) {
+      buffer[i] = bin.charCodeAt(i);
+  }
+  // Blobを作成
+  try{
+      var blob = new Blob([buffer.buffer], {
+          type: 'image/png'
+      });
+  }catch (e){
+      return false;
+  }
+  return blob;
 }

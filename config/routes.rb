@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'dailies/:student_id/index' => 'dailies#index', as: :dailies_index
   get 'dailies/new/:date' => 'dailies#new', as: :new_daily
   get 'dailies/:id/stamp' => 'dailies#stamp', as: :stamp_daily
+  post 'dailies/canvas' => 'dailies#canvas_save', as: :canvas_save
 
   resources :comments, only: [:create]
   resources :student

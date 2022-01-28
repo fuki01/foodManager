@@ -16,6 +16,8 @@ gem 'webpacker', '~> 5.0'
 
 gem 'activestorage-cloudinary-service'
 gem 'cloudinary', require: false
+gem "mini_magick"
+
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

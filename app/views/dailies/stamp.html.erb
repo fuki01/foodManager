@@ -1,11 +1,13 @@
 <meta name="turbolinks-cache-control" content="no-preview">
-<%= javascript_pack_tag 'dailies/stamp'%>
+<%= javascript_pack_tag 'dailies/stamp', defer: true %>
 
 <div id="main-body">
 <div id="load_id">
 loading...(ロードが長い場合は、このページを再読み込みしてください)
 </div>
 <canvas id="canvas"></canvas>
+<%# 保存する %>
+<button class="save_link">save</button>
 <p>スタンプのプレビュー</p>
 <canvas id="stamp_viewr" width="500px" height="500px"></canvas>
 
@@ -27,7 +29,14 @@ loading...(ロードが長い場合は、このページを再読み込みして
 <div id="image_path"><%= @daily.image %></div>
 </div>
 
+<input id="daily_id" type="hidden" value=<%= @daily.id %>>
 <%= image_tag @daily.image, id: "daily_image" %>
+
+<%= form_with url: dailies_path do |f| %>
+      <%= f.text_field :context %>
+      <%= f.file_field :image %>
+      <%= f.submit "登録" %>
+<% end %>
 
 <style>
   #stamp_viewr {

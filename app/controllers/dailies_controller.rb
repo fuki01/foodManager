@@ -4,6 +4,7 @@ class DailiesController < ApplicationController
   before_action :authenticate_student_or_user?, only: %i[index show]
   before_action :accsess_denied_student, only: [:index]
   before_action :accsess_denied_user, only: [:index]
+  skip_before_action :verify_authenticity_token
 
   def index
     dailies = Daily.where(student_id: params[:student_id])
@@ -44,6 +45,7 @@ class DailiesController < ApplicationController
 
   def create
     @daily = Daily.new(daily_params)
+    puts daily_params
     @daily.student_id = current_student.id
     if params[:date].present?
       @daily.day = params[:date]
@@ -65,9 +67,27 @@ class DailiesController < ApplicationController
     @daily = Daily.find(params[:id])
   end
 
+  def canvas_save
+    @daily = Daily.find(post_get_daily_params[:daily_id])
+    @daily.image = post_get_daily_params[:image]
+    if @daily.save
+      redirect_to "/dailies/#{@daily.id}"
+    else
+      redirect_to "/dailies/#{@daily.id}/stamp"
+    end
+  end
+
   private
 
   def daily_params
     params.permit(:context, :image)
   end
+
+
+  def post_get_daily_params
+    params.permit(:daily_id, :image)
+  end
+
+
+
 end
