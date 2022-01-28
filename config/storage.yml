@@ -10,7 +10,7 @@ google:
   service: GCS
   credentials:
     type: "service_account"
-    project_id: <%= Rails.application.credentials.dig(:gcs, :project_id) %>
+    project_id: "shool-issue"
     private_key_id: <%= Rails.application.credentials.dig(:gcs, :private_key_id) %>
     private_key: <%= Rails.application.credentials.dig(:gcs, :private_key).dump %>
     client_email: "shool-issue-app@shool-issue.iam.gserviceaccount.com"
@@ -20,4 +20,4 @@ google:
     auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
     client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/shool-issue-app%40shool-issue.iam.gserviceaccount.com"
   project: "shool-issue"
-  bucket: "school_issue"
+  bucket: "daliy_image"
