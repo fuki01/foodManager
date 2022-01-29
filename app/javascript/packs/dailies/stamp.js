@@ -1,4 +1,17 @@
 document.addEventListener('turbolinks:load', function() {
+  // windowの横幅スマホのアクセスを禁止する
+  const window_width = window.innerWidth;
+  if(window_width < 600){
+    // 現在urlを取得
+    const url = window.location.href;
+    // urlから/stampを削除
+    const url_new = url.replace("/stamp", "");
+    // urlを書き換える
+    // アラート
+    alert("スマホや横幅が狭いものでは使用できません。");
+    window.location.href = url_new;
+  }
+
   console.log("It works on each visit!");
   // load_funcが終わったら実行
   setTimeout(load_func, 500);
@@ -81,8 +94,6 @@ function genuine_puts_stamp(output_canvas, size, x ,y){
   
   stamp.onload = function() {
     // x,y,w,hの中心座標
-    // 長方形を描写
-    ctx_c.strokeRect(x-250, y-250, 500, 500);
     // スタンプ位置を長方形の真ん中にする
     ctx_c.drawImage(stamp, x-(w/2), y-(h/2), w, h);
   }
@@ -200,7 +211,7 @@ document.getElementsByClassName('save_link')[0].addEventListener('click', (e) =>
   // 5秒まつ
   setTimeout(() => {
   window.location.href = '/dailies/' + document.getElementById('daily_id').value;
-  }, 1000);
+  }, 5000);
 
 
 

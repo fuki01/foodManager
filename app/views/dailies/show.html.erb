@@ -2,7 +2,7 @@
 
 <div class="ui grid">
   <div class="ui only row">
-    <%= link_to "一覧ページへ戻る", dailies_path %>
+    <%= link_to "一覧ページへ戻る", dailies_index_path(@daily.student.id) %>
   </div>
   <%= image_tag @daily.image, id: "show_img" %>
   <%# 画像へスタンプをつける %>
@@ -24,17 +24,11 @@
         <% end %>
         <% @comments.each do |comment| %>
           <div class="comment">
-          <% if comment.position == 'student' %>
             <a class="avatar">
               <i class="meh user icon" style="font-size:2.5em;" ></i>
             </a>
-          <% elsif comment.position == 'trainer' %>
-            <a class="avatar">
-              <i class="smile user icon" style="font-size:2.5em; color: red;" ></i>
-            </a>
-          <% end %>
             <div class="content">
-              <a class="author"><%= comment.position %></a>
+              <a class="author">トレーナー<%= @comment %></a>
               <div class="metadata">
                 <span class="date"><%= comment.created_at %></span>
               </div>
