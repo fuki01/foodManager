@@ -7,7 +7,7 @@
   <%= image_tag @daily.image, id: "show_img" %>
   <%# 画像へスタンプをつける %>
   <% if !(current_user.nil?) %>
-  <a href="<%= "/dailies/#{params[:id]}/stamp" %>" >スタンプをつける</a>
+  <%= link_to "スタンプをつける", "/dailies/#{params[:id]}/stamp", data: {"turbolinks" => false} %>
   <% end %>
   <div class="ui only row">
   <%= @daily.day %>

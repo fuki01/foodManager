@@ -1,6 +1,6 @@
 <div class="ui center grid">
   <div class="ui only row">
-    <%= link_to '生徒の一覧', student_index_path, class: "ui primary button", style: "margin: 0 auto" %>
+    <%= link_to '生徒の一覧', student_index_path,data: {"turbolinks" => false}, class: "ui primary button", style: "margin: 0 auto" %>
   </div>
   <div class="ui only row">
    <%= link_to '生徒の新規登録', new_student_path, class: "ui primary button", style: "margin: 0 auto"%>
