@@ -63,6 +63,13 @@ class DailiesController < ApplicationController
     end
   end
 
+  def destroy
+    @daily = Daily.find(params[:id])
+    @daily.destroy
+    redirect_to "/dailies/#{current_student.id}/index"
+  end
+  
+
   def stamp
     @daily = Daily.find(params[:id])
   end

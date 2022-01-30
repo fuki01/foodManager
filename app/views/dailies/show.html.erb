@@ -9,6 +9,9 @@
   <% if !(current_user.nil?) %>
   <%= link_to "スタンプをつける", "/dailies/#{params[:id]}/stamp", data: {"turbolinks" => false} %>
   <% end %>
+  <% if current_user.nil? %>
+  <%= link_to "スタンプを削除する", daily_path(params[:id]), method: "DELETE"%>
+  <% end %>
   <div class="ui only row">
   <%= @daily.day %>
   </div>
