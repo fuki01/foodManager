@@ -8,12 +8,11 @@
     <% end %>
 
     <% if !current_student.nil? %>
-      <a class="header item" href=<%= "/dailies/#{current_student.id}/index" %>>FoodManager</a>
+      <%= link_to "FoodManager", "/dailies/#{current_student.id}/index", class: "hearder item", data: {"turbolinks" => false} %>
     <% end %>
 
     <div class="right menu">
         <div class="ui item">
-
           <% if current_user.nil? and current_student.nil? %>
             <% if current_user.nil?%>
               <%= link_to "トレーナーログイン", new_user_session_path, style: "margin-right: 20px"%>

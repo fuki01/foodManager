@@ -1,9 +1,14 @@
 <%= stylesheet_link_tag "dailies"%>
 <%= javascript_pack_tag 'dailies/index', defer: true %>
 
+
+<div class="ui two item menu only row" style="margin-bottom:30px;">
+  <a class="item active">一覧</a>
+  <%= link_to 'スタンプ', stamplist_daily_path(params[:student_id]), class: "item", data: {"turbolinks" => false} %>
+</div>
+
+
 <div class="ui grid">
-
-
 <% @nowtime = Time.zone.now.strftime("%Y-%m-%d") %>
 <% @latesttime = @dailies_group.take(1).to_h.keys[0] %>
 <% if current_user.nil? %>
@@ -38,7 +43,7 @@
         <div class="four wide column">
         <a href="<%= "/dailies/#{@day.id}" %>" >
         <% begin %>
-          <%= image_tag @day.image, class: "index_img" %>
+          <%= image_tag @day.image, class: "index_img", style:"margin-top:10px"%>
         <% rescue => e %>
         <% end %>
         </a>
@@ -54,7 +59,7 @@
   <% end %>
   </div>
   <div class="eight wide column" style="text-align: right;">
-  <p>
+  <p style="font-size: 20px; color:gray;">
   <%= dg[0] %>
   </p>
   </div>

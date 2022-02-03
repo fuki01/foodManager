@@ -1,3 +1,5 @@
+const stamp_name_list = []
+
 document.addEventListener('turbolinks:load', function() {
   // windowの横幅スマホのアクセスを禁止する
   const window_width = window.innerWidth;
@@ -50,7 +52,7 @@ function load_func(){
     canvas.height = img.height;
     // canvasに画像を貼り付ける
     // 画像サイズをちいさくなるように拡大縮小
-    ctx.drawImage(img, (canvas.width - canvas.width/1.2)/2, (canvas.height - canvas.height/1.2)/2, canvas.width/1.2, canvas.height/1.2);
+    ctx.drawImage(img, (canvas.width - canvas.width)/2, (canvas.height - canvas.height)/2, canvas.width, canvas.height);
     // load_idを削除
     document.getElementById('load_id').remove();
   };
@@ -60,6 +62,18 @@ function load_func(){
 canvas.addEventListener("click", (e) => {
   const canvas_viewr = document.getElementById('canvas');
   const size = document.getElementsByName('size')[0].value;
+  const select = document.getElementsByName('stamp')[0];
+  
+  let flag = false;
+  for(let i = 0; i < stamp_name_list.length; i++){
+    if(select.value == stamp_name_list[i]){
+      flag = true;
+    }
+  }
+  if(!flag){
+    stamp_name_list.push(select.value)
+  }
+
   const x = e.offsetX;
   const y = e.offsetY;
   console.log(x, y);
@@ -100,10 +114,10 @@ function genuine_puts_stamp(output_canvas, size, x ,y){
   // テキストを描画
   const text_width = ctx.measureText(text).width;
   // テキストサイズを変更
-  ctx_c.font = "60px 'ＭＳ Ｐゴシック'";
+  ctx_c.font = "40px 'ＭＳ Ｐゴシック'";
 
   // テキストを描画
-  ctx_c.fillText(text, x-text_width/2, y+h/2+30);
+  ctx_c.fillText(text, x-text_width/2-20, y+h/2+40);
 
 }
 
@@ -192,6 +206,8 @@ document.getElementsByClassName('save_link')[0].addEventListener('click', (e) =>
   const formData = new FormData();
   formData.append('image', blob, 'stamp.png');
   formData.append('daily_id', document.getElementById('daily_id').value);
+  // stamp_name_listのリスト共通部を削除
+  formData.append('image_name', stamp_name_list);
 
   // ajaxでpostする
   const xhr = new XMLHttpRequest();
