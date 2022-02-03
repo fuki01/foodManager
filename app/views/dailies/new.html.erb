@@ -4,7 +4,7 @@
 
     <h3>画像</h3>
     <div class="ui form computer only row">
-      <%= f.file_field :image %>
+      <%= f.file_field :image, accept: "image/*"%>
     </div>
     <%= f.hidden_field :date, value: @date %>
     <div class="ui computer only row">
