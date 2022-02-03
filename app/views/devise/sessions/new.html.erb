@@ -1,5 +1,5 @@
 <div class="ui centered grid">
-  <h2 class="computer only row">ログイン</h2>
+  <h2 class="computer only row">トレーナーログイン</h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <h3>メールアドレス</h3>
     <div class="ui form computer only row">
@@ -15,3 +15,6 @@
   </div>
   <% end %>
 </div>
+<%= debug 'テストユーザー' %>
+<%= debug 'メール　example@example.com'%>
+<%= debug 'パスワード　password'%>

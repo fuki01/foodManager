@@ -1,7 +1,7 @@
 <div class="ui centered grid">
   <h2 class="computer only row">生徒用ログイン</h2>
 <%= form_with url: student_login_path do |f| %>
-  <h3>名前</h3>
+  <h3>ID</h3>
   <div class="ui form computer only row">
     <%= f.text_field :username %>
   </div>
@@ -10,7 +10,11 @@
     <%= f.password_field :password %>
   </div>
   <div class="ui computer only row">
-    <%= f.submit "ログイン", class: "ui button",style: "margin:30px" %>
+    <%= f.submit "ログイン", class: "ui primary button",style: "margin:30px" %>
   </div>
 <% end %>
 </div>
+
+<%= debug 'test user' %>
+<%= debug 'ID example_student_id' %>
+<%= debug 'Password example_student_pass' %>
