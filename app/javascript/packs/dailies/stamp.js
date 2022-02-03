@@ -1,7 +1,7 @@
 document.addEventListener('turbolinks:load', function() {
   // windowの横幅スマホのアクセスを禁止する
   const window_width = window.innerWidth;
-  if(window_width < 600){
+  if(window_width < 800){
     // 現在urlを取得
     const url = window.location.href;
     // urlから/stampを削除
@@ -78,17 +78,14 @@ function genuine_puts_stamp(output_canvas, size, x ,y){
   // 画像を貼り付ける
   const stamp = new Image();
   // チェックボックスがチェックされているかどうか
-  if (document.getElementById('stamp1').checked) {
-    stamp.src = "/assets/stamp1.png";
-  }
-  if (document.getElementById('stamp2').checked) {
-    stamp.src = "/assets/stamp2.png";
-  }
-  if (document.getElementById('stamp3').checked) {
-    stamp.src = "/assets/stamp3.png";
-  }
+  
+  const select = document.getElementsByName('stamp')[0];
+  stamp.src = "/assets/"+ select.value;
+
+
   const w = canvas_viewr.width*(size/100)
   const h = canvas_viewr.height*(size/100)
+
   
   const ctx_c = output_canvas.getContext('2d');
   
@@ -104,7 +101,10 @@ function genuine_puts_stamp(output_canvas, size, x ,y){
   const text_width = ctx.measureText(text).width;
   // テキストサイズを変更
   ctx_c.font = "60px 'ＭＳ Ｐゴシック'";
-  ctx_c.fillText(text, x-(text_width/2), y+h/2);
+
+  // テキストを描画
+  ctx_c.fillText(text, x-text_width/2, y+h/2+30);
+
 }
 
 
@@ -115,16 +115,12 @@ size.addEventListener('change', (e) => {
   puts_stamp(canvas_viewr, e.target.value);
 });
 
-// ラジオボックスのチェックしたときの処理
-const radio = document.getElementsByName('stamp');
-for (let i = 0; i < radio.length; i++) {
-  radio[i].addEventListener('change', (e) => {
-    // stamp_sizeを取得
-    const size = document.getElementsByName('size')[0].value;
-    const canvas_viewr = document.getElementById('stamp_viewr');
-    puts_stamp(canvas_viewr,size);
-  });
-}
+// selectした時との変化を検知する
+const select = document.getElementsByName('stamp')[0];
+select.addEventListener('change', (e) => {
+  const canvas_viewr = document.getElementById('stamp_viewr');
+  puts_stamp(canvas_viewr, document.getElementsByName('size')[0].value);
+});
 
 // textareaに変化があったときの処理
 const textarea = document.getElementsByName('textarea')[0];
@@ -158,16 +154,11 @@ function puts_stamp(output_canvas, size){
   
   // 画像を貼り付ける
   const stamp = new Image();
-  // チェックボックスがチェックされているかどうか
-  if (document.getElementById('stamp1').checked) {
-    stamp.src = "/assets/stamp1.png";
-  }
-  if (document.getElementById('stamp2').checked) {
-    stamp.src = "/assets/stamp2.png";
-  }
-  if (document.getElementById('stamp3').checked) {
-    stamp.src = "/assets/stamp3.png";
-  }
+  // selectのstamp-selectorのvalueを取得
+  var e = document.getElementById("stamp-select");
+  var strUser = e.value;
+  stamp.src = "/assets/"+ strUser
+  console.log(strUser)
   const x = canvas_viewr.width/2-(canvas_viewr.width*(size/100))/2
   const y = canvas_viewr.height/2-(canvas_viewr.height*(size/100))/2
   const w = canvas_viewr.width*(size/100)
@@ -182,7 +173,7 @@ function puts_stamp(output_canvas, size){
   ctx.fillStyle = document.getElementsByName('color')[0].value;
   // テキストを描画
   const text_width = ctx.measureText(text).width;
-  ctx_c.fillText(text, x+(w/2)-(text_width/2), y+h);
+  ctx_c.fillText(text, x+(w/2)-(text_width/2), y+h+20);
 }
 
 
@@ -211,11 +202,7 @@ document.getElementsByClassName('save_link')[0].addEventListener('click', (e) =>
   // 5秒まつ
   setTimeout(() => {
   window.location.href = '/dailies/' + document.getElementById('daily_id').value;
-  }, 5000);
-
-
-
-
+  }, 1000);
 });
 
 function toBlob(base64) {

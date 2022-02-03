@@ -22,24 +22,20 @@ loading...(ロードが長い場合は、このページを再読み込みして
         <div class="tool_name">
           <p>スタンプの形</p>
         </div>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" id="stamp1" name="stamp" value="1">
-            <label for="scales">まる</label>
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" id="stamp2" name="stamp" value="2">
-            <label for="scales">三角</label>
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" id="stamp3" name="stamp" value="3">
-            <label for="scales">ばつ</label>
-          </div>
-        </div>
+
+        <select name="stamp" id="stamp-select">
+            <option value="">-- 選択してください --</option>
+            <option value="stamp_0004_kinshi.png">禁止マーク</option>
+            <option value="stamp_0005_kinshi_junkfood.png">ジャンク禁止マーク</option>
+            <option value="stamp_0006_kinshi_sweets.png">甘いもの禁止マーク</option>
+            <option value="stamp_0007_mark_alcohol_ng.png">アルコール禁止マーク</option>
+            <option value="stamp_0008_stamp1.png">まる</option>
+            <option value="stamp_0009_stamp2.png">三角</option>
+            <option value="stamp_0010_stamp3.png">ばつ</option>
+            <option value="stamp_0011_stamp4.png">グッドマーク</option>
+            <option value="stamp_0012_video_cooking_man.png">料理系ユーチューバー</option>
+        </select>
+
       </div>
     </div>
     <%# サイズ変更 %>
