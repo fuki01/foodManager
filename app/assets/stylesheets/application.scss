@@ -1,1 +1,16 @@
 @import "semantic-ui";
+
+#header_id{
+  background-image: -moz-linear-gradient(40deg, rgba(255, 147, 255, 0.44), rgba(0, 255, 255, 0.44));
+
+  background-image: -webkit-linear-gradient(40deg, rgba(255, 147, 255, 0.44), rgba(0, 255, 255, 0.44));
+  
+  background-image: linear-gradient(40deg, rgba(255, 147, 255, 0.44), rgba(0, 255, 255, 0.44));
+}
+body{
+  background-image: -moz-linear-gradient(45deg, rgba(251, 208, 213, 0.38), rgba(251, 246, 208, 0.48));
+
+  background-image: -webkit-linear-gradient(45deg, rgba(251, 208, 213, 0.38), rgba(251, 246, 208, 0.48));
+  
+  background-image: linear-gradient(45deg, rgba(251, 208, 213, 0.38), rgba(251, 246, 208, 0.48));
+}

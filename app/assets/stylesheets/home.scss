@@ -7,6 +7,10 @@ h1{
   text-align: center;
   margin-top: 100px;
   padding: 0;
+
+  background:-webkit-linear-gradient(45deg, rgba(0, 38, 255, 0.64), rgba(0, 255, 162, 0.85));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 p{
@@ -15,6 +19,9 @@ p{
   text-align: center;
   margin: 0;
   padding: 0;
+  background:-webkit-linear-gradient(45deg, rgba(0, 38, 255, 0.64), rgba(0, 255, 162, 0.85));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .buttons{
   margin: 100px 0 ;
@@ -23,4 +30,5 @@ p{
 #button_id{
   width: 210px;
   margin: 5px;
+  
 }

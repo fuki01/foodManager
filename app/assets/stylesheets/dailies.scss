@@ -28,3 +28,47 @@
 #stamp_viewr{
   margin: 0 auto;
 }
+
+.stanp-head{
+  botton{
+    align-self: right;
+  }
+  #save_button
+  {
+    margin-top: 50px;
+  }
+}
+
+
+.list1{
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  p{
+    font-weight: normal;
+    display: inline-block;
+    text-align: center;
+    border-bottom: 2px solid #666666;
+  }
+}
+.field{
+  text-align: center;
+}
+
+.tool_name{
+  text-align: center;
+  font-size: 15px;
+  margin: 20px;
+  // 下線を引く
+  text-decoration: underline;
+}
+#context{
+  width: 250px;
+}
+
+.iiwake{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}

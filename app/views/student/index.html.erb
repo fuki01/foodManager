@@ -1,16 +1,19 @@
+<%= stylesheet_link_tag "student"%>
+
 <div class="ui centered grid">
-<div class="ui computer only row">
-<h2>生徒の一覧</h2>
+<div class="ui  only row">
+  <div class="student_list_title">
+    <h2>生徒の一覧</h2>
+  </div>
 </div>
 <div class="ui relaxed divided list" style="margin:50px;">
+
 <% @students.each do |s| %>
   <div class="item">
-    <i class="large github middle aligned icon"></i>
-    <div class="content">
-      <%= link_to "#{s.username}", dailies_index_path(s.id), data: {"turbolinks" => false} %>
-      <div class="description">Updated 10 mins ago</div>
-    </div>
+    <i class="large user icon"></i>
+    <%= link_to "名前: #{s.username}", dailies_index_path(s.id), data: {"turbolinks" => false}, class:"content" %></li><br>
   </div>
 <% end %>
+
 </div>
 </div>
