@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
 
-    flash[:alert] = 'Error creating student' unless @comment.save
+    flash[:alert] = '作成出来ませんでした．' unless @comment.save
     redirect_to daily_path(@comment.daily_id)
   end
 
