@@ -3,9 +3,6 @@ class StudentController < ApplicationController
 
   def index
     @students = Student.where(user_id: current_user.id)
-    # @studentsをソートする　@students.dailies.updated_atの降順
-    # @students = @students.sort_by { |student| student.dailies.order(updated_at: :desc).first.updated_at }
-    puts("students", @students[0].dailies[0].updated_at)
     session[:student_id] = nil
   end
 
