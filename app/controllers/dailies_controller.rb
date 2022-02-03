@@ -45,7 +45,7 @@ class DailiesController < ApplicationController
 
   def create
     @daily = Daily.new(daily_params)
-    puts daily_params
+    puts params[:date]
     @daily.student_id = current_student.id
     if params[:date].present?
       @daily.day = params[:date]

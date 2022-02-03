@@ -32,10 +32,8 @@
   <%= image_tag @daily.image, id: "show_img" %>
   <%# 画像へスタンプをつける %>
   <% if current_user.nil? %>
-  <%= link_to "投稿を削除する", daily_path(params[:id]), class:"ui negative basic button", method: "DELETE"%>
+    <%= link_to "投稿を削除する", daily_path(params[:id]), class:"ui negative basic button", style:"margin: 20px;", method: "DELETE"%>
   <% end %>
-
-
 
     <div class="ui only row" id="body-main">
       <div class="ui comments" style="margin: 0 auto; width: 500px;">
