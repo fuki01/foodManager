@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag "dailies"%>
+<%= javascript_pack_tag 'dailies/stamplist', defer: true %>
+
+<div class="ui two item menu only row" style="">
+  <%= link_to '一覧', dailies_index_path(params[:student_id]), class: "ui brue item", data: {"turbolinks" => false}  %>
+  <a class="item active">スタンプ</a>
+</div>
+
+
+<div class="ui form">
+  <div class="grouped fields">
+    <select name="stamp" id="stamp-select">
+        <option value="">-- 選択してください --</option>
+        <option value="stamp_0004_kinshi.png">禁止マーク</option>
+        <option value="stamp_0005_kinshi_junkfood.png">ジャンク禁止マーク</option>
+        <option value="stamp_0006_kinshi_sweets.png">甘いもの禁止マーク</option>
+        <option value="stamp_0007_mark_alcohol_ng.png">アルコール禁止マーク</option>
+        <option value="stamp_0008_stamp1.png">まる</option>
+        <option value="stamp_0009_stamp2.png">三角</option>
+        <option value="stamp_0010_stamp3.png">ばつ</option>
+        <option value="stamp_0011_stamp4.png">グッドマーク</option>
+        <option value="stamp_0012_video_cooking_man.png">料理系ユーチューバー</option>
+    </select>
+  </div>
+</div>
+<div class="ui form">
+  <% for i in 0...@dailys.length%>
+  <% id_tags = "index_img2 " %>
+  <% begin %>
+    <% @iamge_name_list[i].each do |iamge_name_list|%>
+      <% id_tags = id_tags + " " + iamge_name_list %>
+    <% end %>
+  <% rescue => e%>
+  <% end %>
+  <a href=<%="/dailies/#{@dailys[i].id}" %> >
+    <%= image_tag @dailys[i].image, class: "#{id_tags}", style:"display:none; margin:0 auto; " %>
+  </a>
+  <% end %>
+</div>

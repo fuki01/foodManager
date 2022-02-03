@@ -35,7 +35,8 @@ class DailiesController < ApplicationController
 
   def show
     @daily = Daily.find(params[:id])
-    @comments = @daily.comments.order(created_at: :desc)
+    @comments = @daily.comments.order(created_at: :asc)
+
   end
 
   def new
@@ -77,11 +78,28 @@ class DailiesController < ApplicationController
   def canvas_save
     @daily = Daily.find(post_get_daily_params[:daily_id])
     @daily.image = post_get_daily_params[:image]
+    puts "post_get_daily_params"
+    puts post_get_daily_params[:image_name]
+    @daily.image_name = post_get_daily_params[:image_name]
     if @daily.save
       redirect_to "/dailies/#{@daily.id}"
     else
       redirect_to "/dailies/#{@daily.id}/stamp"
     end
+  end
+
+  def stamplist
+    @dailys = Daily.where(student_id: params[:student_id])
+    @iamge_name_list = []
+    @dailys.each do |daily|
+      # daily.image_nameを,で区切って配列にする
+      if daily.image_name == nil
+        @iamge_name_list.push([]);
+      else
+        @iamge_name_list.push(daily.image_name.split(","))
+      end
+    end
+    @iamge_name_list
   end
 
   private
@@ -92,7 +110,7 @@ class DailiesController < ApplicationController
 
 
   def post_get_daily_params
-    params.permit(:daily_id, :image)
+    params.permit(:daily_id, :image, :image_name)
   end
 
 

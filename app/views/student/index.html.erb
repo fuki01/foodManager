@@ -11,7 +11,7 @@
 <% @students.each do |s| %>
   <div class="item">
     <i class="large user icon"></i>
-    <%= link_to "名前: #{s.username}", dailies_index_path(s.id), data: {"turbolinks" => false}, class:"content" %></li><br>
+    <%= link_to "#{s.username}", dailies_index_path(s.id), data: {"turbolinks" => false}, class:"content" %></li><br>
   </div>
 <% end %>
 
