@@ -3,7 +3,7 @@
 
 <div class="ui grid">
 
-<h2 class="ui form only row">一覧表示する</h2>
+
 <% @nowtime = Time.zone.now.strftime("%Y-%m-%d") %>
 <% @latesttime = @dailies_group.take(1).to_h.keys[0] %>
 <% if current_user.nil? %>
@@ -29,7 +29,6 @@
       <% end %>
     <% end %>
   <% end %>
-  <%= dg[0] %>
 
   <div class="images_list ">
     <% l+=1 %>
@@ -38,17 +37,27 @@
       <% if @day.present? %>
         <div class="four wide column">
         <a href="<%= "/dailies/#{@day.id}" %>" >
+        <% begin %>
           <%= image_tag @day.image, class: "index_img" %>
+        <% rescue => e %>
+        <% end %>
         </a>
         </div>
       <% end %>
     <% end %>
   </div>
+  <div class="eight wide column">
   <% if current_user.nil? %>
     <div class="ui form only row">
       <%= link_to "+", new_daily_path(dg[0]), class: "ui button blue" %>
     </div>
   <% end %>
+  </div>
+  <div class="eight wide column" style="text-align: right;">
+  <p>
+  <%= dg[0] %>
+  </p>
+  </div>
 
 <% end %>
 </div>

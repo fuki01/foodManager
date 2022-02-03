@@ -8,56 +8,72 @@ loading...(ロードが長い場合は、このページを再読み込みして
 </div>
 <canvas id="canvas"></canvas>
 <%# 保存する %>
-<button class="ui primary button">save</button>
-<p>スタンプのプレビュー</p>
-<canvas id="stamp_viewr" width="500px" height="500px"></canvas>
-
-<%# ラジオボタンを追加する %>
-<div class="ui form">
-  <div class="grouped fields">
-    <label>スタンプの形</label>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" id="stamp1" name="stamp" value="1">
-        <label for="scales">まる</label>
+<div class="ui grid">
+  <div class="eight wide column">
+    <div class="tool_name">
+      <p>スタンプのプレビュー</p>
+    </div>
+    <canvas id="stamp_viewr" width="500px" height="500px"></canvas>
+  </div>
+  <div class="eight wide column">
+    <%# ラジオボタンを追加する %>
+    <div class="ui form">
+      <div class="grouped fields">
+        <div class="tool_name">
+          <p>スタンプの形</p>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" id="stamp1" name="stamp" value="1">
+            <label for="scales">まる</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" id="stamp2" name="stamp" value="2">
+            <label for="scales">三角</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" id="stamp3" name="stamp" value="3">
+            <label for="scales">ばつ</label>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" id="stamp2" name="stamp" value="2">
-        <label for="scales">三角</label>
+    <%# サイズ変更 %>
+    <div class="ui form">
+      <div class="field">
+        <div class="tool_name">
+          <p>スタンプのサイズ</p>
+        </div>
+        <input type="range" name="size" id="stamp_size" min="1" max="100" value="100">
       </div>
     </div>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" id="stamp3" name="stamp" value="3">
-        <label for="scales">ばつ</label>
+    <%# カラーピッカー %>
+    <div class="ui form">
+      <div class="field">
+        <div class="tool_name">
+          <p>コメントの色</p>
+        </div>
+        <input type="color" name="color">
       </div>
+    </div>
+    <%# テキストエリア %>
+    <div class="ui form">
+      <div class="field">
+        <div class="tool_name">
+          <p>コメント</p>
+        </div>
+        <textarea name="textarea" id="context" width="50px"></textarea>
+      </div>
+    </div>
+    <div class="tool_name">
+      <button class="ui primary button save_link">保存する</button>
     </div>
   </div>
 </div>
-<%# サイズ変更 %>
-<div class="ui form">
-  <div class="field">
-    <label>スタンプのサイズ</label>
-    <input type="range" name="size" id="stamp_size" min="1" max="100" value="100">
-  </div>
-</div>
-<%# カラーピッカー %>
-<div class="ui form">
-  <div class="field">
-    <label>コメントの色</label>
-    <input type="color" name="color">
-  </div>
-</div>
-<%# テキストエリア %>
-<div class="ui form">
-  <div class="field">
-    <label>コメント</label>
-    <textarea name="textarea" id="context" rows="4" cols="40"></textarea>
-  </div>
-</div>
-
 <%# @daily.imageを非表示labelにする %>
 <div id="image_path"><%= @daily.image %></div>
 </div>

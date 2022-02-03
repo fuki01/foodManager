@@ -19,7 +19,7 @@ class StudentController < ApplicationController
     @student.user_id = current_user.id
     if @student.save
       flash[:notice] = 'You have successfully created a student'
-      redirect_to @student
+      redirect_to '/user/home'
     else
       flash[:alert] = 'Error creating student'
       render 'new'
@@ -42,21 +42,21 @@ class StudentController < ApplicationController
     begin
       if student_username.id == student_password.id
         session[:student_id] = student_username.id
-        flash[:notice] = 'You have successfully logged in'
+        flash[:notice] = 'ログインに成功しました'
         redirect_to dailies_index_path(current_student.id)
       else
-        flash[:alert] = 'Error logging in'
+        flash[:alert] = 'ログインに失敗しました'
         redirect_to root_path
       end
     rescue StandardError
-      flash[:alert] = 'Error logging in'
+      flash[:alert] = 'ログインに失敗しました'
       redirect_to root_path
     end
   end
 
   def logout
     session[:student_id] = nil
-    flash[:notice] = 'You have successfully logged out'
+    flash[:notice] = 'ログアウトしました'
     redirect_to student_loginform_path
   end
 

@@ -1,10 +1,7 @@
 <div class="ui centered grid">
   <h2 class="computer only row">画像を登録する</h2>
   <%= form_with url: dailies_path do |f| %>
-    <h3>内容</h3>
-    <div class="ui form computer only row">
-      <%= f.text_field :context %>
-    </div>
+
     <h3>画像</h3>
     <div class="ui form computer only row">
       <%= f.file_field :image %>
