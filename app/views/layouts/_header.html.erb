@@ -24,10 +24,10 @@
           <% end %>
 
           <% if !current_user.nil? %>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete%>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete%>
           <% end %>
           <% if !current_student.nil? %>
-            <%= link_to "Logout", student_logout_path, method: :delete%>
+            <%= link_to "ログアウト", student_logout_path, method: :delete%>
           <% end %>
         </div>
     </div>
