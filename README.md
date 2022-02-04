@@ -17,8 +17,6 @@ Gemfileを見てください．
 
 # Usage
 
-Requirementで列挙したライブラリなどのインストール方法を説明する
-
 ```bash
 git clone https://github.com/fuki01/foodManager.git
 cd foodManager
