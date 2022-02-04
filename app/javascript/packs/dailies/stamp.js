@@ -195,7 +195,7 @@ function puts_stamp(output_canvas, size){
 document.getElementsByClassName('save_link')[0].addEventListener('click', (e) => {
   // canvasをpngに変換
   const canvas = document.getElementById('canvas');
-  canvas.crossOrigin = "anonymous"; 
+
   const dataURL = canvas.toDataURL('image/png');
   // Base64形式をデコードする
   const base64 = dataURL.replace(/^data:image\/png;base64,/, "");
