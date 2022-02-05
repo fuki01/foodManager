@@ -2,17 +2,9 @@
 
 トレーナと生徒を繋ぐ食事管理アプリです．
 
-# Requirement
+![スクリーンショット 2022-02-05 17 04 26](https://user-images.githubusercontent.com/55621861/152633938-e9f42e9a-07b7-4194-82d3-8a6fc1b8b00e.png)
 
-Gemfileを見てください．
-
-# System Configuration
-
-![スクリーンショット 2022-01-29 3 18 03](https://user-images.githubusercontent.com/55621861/151604566-07802645-86cd-49be-98e3-e6b5719de13e.png)
-
-# Database Configuration
-
-![スクリーンショット 2022-01-29 4 13 03](https://user-images.githubusercontent.com/55621861/151607388-5dfcf2b9-5f6d-4608-8fa1-e08d6a84d165.png)
+![スクリーンショット 2022-02-05 17 08 47](https://user-images.githubusercontent.com/55621861/152634053-225b8f19-8e9d-4cf4-8fd5-824ce8409af2.png)
 
 
 # Usage
